@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <p> Click the button to authenticate a fitbit device:</p>
+        <button id = "btn">Click me</button>
+        <div id = "action">
+        </div>
+    </body>
+
+    <script>
+        $(document).ready(function(){
+            $('#btn').click(function() {
+                console.log("Button Click");
+                $.get('/registerDev');
+            });
+        });
+
+        $(window).on('load', function(e){
+            if (window.location.hash == '#_=_') {
+                window.location.hash = ''; // for older browsers, leaves a # behind
+                history.pushState('', document.title, window.location.pathname); // nice and clean
+                e.preventDefault(); // no page reload
+            }
+        });
+    </script>
+</html>

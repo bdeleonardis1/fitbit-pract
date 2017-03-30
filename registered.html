@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Registered</title>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <p>Press the button to pull activity data</p>
+        <button id = 'pullActivity'>Pull activity data</button>        
+    </body>
+    <script>
+        $('#pullActivity').click(function() {
+            console.log('pullactivities clicked');
+            $.get('/pullactivities', function(data) {
+                $('body').html('<p>' + JSON.stringify(data) + '</p>');
+            });
+        })
+
+        $(window).on('load', function(e){
+            if (window.location.hash == '#_=_') {
+                window.location.hash = ''; // for older browsers, leaves a # behind
+                history.pushState('', document.title, window.location.pathname); // nice and clean
+                e.preventDefault(); // no page reload
+            }
+        })
+    </script>
+</html>
